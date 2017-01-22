@@ -24,3 +24,4 @@ apt-get install poppler-utils
 chmod +x /vagrant/check_speed/check_internet_speed.sh
 chmod +x /vagrant/check_speed/create_internet_speed_report.sh
 chmod +x /vagrant/check_speed/monitor_internet_speed.Rmd
+
