@@ -20,8 +20,3 @@ apt-get install -y texlive-full #texlive-latex-recommended
 # install poppler-utils so we can view pdfs in the shell with less myfile.pdf
 apt-get install poppler-utils
 
-# set executable bits on script files mounted in the vagrant container
-chmod +x /vagrant/check_speed/check_internet_speed.sh
-chmod +x /vagrant/check_speed/create_internet_speed_report.sh
-chmod +x /vagrant/check_speed/monitor_internet_speed.Rmd
-
