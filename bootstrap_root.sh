@@ -6,7 +6,6 @@ apt-get update
 apt-get install -y python-pip
 pip install speedtest-cli # fails without sudo
 
-
 # install R
 apt-get install -y r-base
 mkdir -p "/home/vagrant/lib/R"

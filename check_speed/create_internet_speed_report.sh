@@ -53,4 +53,3 @@ echo dataFile      = "${dataFile}"
 # logic
 ########################################
 Rscript -e "rmarkdown::render(input=\"${rmarkdownFile}\", output_file=\"${outputFile}\", params=list(dataFile=\"${dataFile}\"))"
-

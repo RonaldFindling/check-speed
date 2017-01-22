@@ -72,4 +72,3 @@ if crontab -l | grep -Fxq "${cron2_escaped}"
     # Remove temp file
     rm mycron
 fi
-

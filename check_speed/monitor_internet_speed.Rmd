@@ -32,4 +32,3 @@ ggplot(data, aes(posixlt)) +
 ```{r}
 data[c("dateTime", "download", "upload")]
 ```
-
