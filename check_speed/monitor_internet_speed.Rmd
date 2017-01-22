@@ -1,0 +1,35 @@
+---
+title: "Monitor Internet Speed"
+author: "Ronald Findling"
+date: "December 27, 2016"
+params:
+  dataFile: "/home/odroid/speedtesting/speedtest_values.csv"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(scales)
+library(ggplot2)
+library(rmarkdown)
+absFilePath=params$dataFile
+data=read.table(absFilePath, sep=",")
+colnames(data)=c("dateTime", "download", "upload")
+data$posixct=strptime(data$dateTime, format = "%Y.%m.%d %H:%M:%S")
+data$posixlt=as.POSIXlt(data$dateTime, format = "%Y.%m.%d %H:%M:%S")
+```
+
+## Visualize Internet Speed over Time
+```{r scale, ggplot, tidy=FALSE}
+ggplot(data, aes(posixlt)) + 
+  geom_line(aes(y=download, color="download")) + 
+  geom_line(aes(y=upload, color = "upload"))
+```
+\pagebreak
+
+
+## Raw Speed Data
+```{r}
+data[c("dateTime", "download", "upload")]
+```
+
