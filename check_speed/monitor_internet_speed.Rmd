@@ -23,7 +23,9 @@ data$posixlt=as.POSIXlt(data$dateTime, format = "%Y.%m.%d %H:%M:%S")
 ```{r scale, ggplot, tidy=FALSE}
 ggplot(data, aes(posixlt)) + 
   geom_line(aes(y=download, color="download")) + 
-  geom_line(aes(y=upload, color = "upload"))
+  geom_line(aes(y=upload, color = "upload")) +
+  xlab("time") +
+  ylab("speed")
 ```
 \pagebreak
 
