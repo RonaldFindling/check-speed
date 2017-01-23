@@ -7,18 +7,19 @@
 ####################
 # set PATH in cron
 ####################
-cron_path="PATH=/home/ubuntu/bin:/home/ubuntu/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin"
+cron_path="#Set path (cron doesn't use the users path)\nPATH=/home/ubuntu/bin:/home/ubuntu/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin"
 
 # Check if cron job already in crontab
 if crontab -l | grep -Fxq "${cron_path}"
 then
     echo "Crontab already exists. Exiting..."
 else
-	echo "Adding job to crontab."
+    echo "Adding job to crontab."
     # Write out current crontab into temp file
     crontab -l > mycron
     # Append new cron into cron file
-    echo "${cron_path}" >> mycron
+    echo -e "${cron_path}" >> mycron
+	echo "" >> mycron
     # Install new cron file
     crontab mycron
     # Remove temp file
@@ -28,7 +29,7 @@ fi
 ####################
 # check speed job
 ####################
-cron1="*/2 * * * * /vagrant/check_speed/check_internet_speed.sh >> /vagrant/check_speed/speedtest_values.csv"
+cron1="#Fetch and store the internet speed\n*/2 * * * * /vagrant/check_speed/check_internet_speed.sh >> /vagrant/check_speed/speedtest_values.csv"
 # Escape all the asterisks so we can grep for it
 cron1_escaped=$(echo "$cron1" | sed s/\*/\\\\*/g)
 
@@ -38,11 +39,12 @@ if crontab -l | grep -Fxq "${cron1_escaped}"
     echo "Crontab already exists. Exiting..."
     exit
   else
-	echo "Adding job to crontab."
+    echo "Adding job to crontab."
     # Write out current crontab into temp file
     crontab -l > mycron
     # Append new cron into cron file
-    echo "${cron1}" >> mycron
+    echo -e "${cron1}" >> mycron
+	echo "" >> mycron
     # Install new cron file
     crontab mycron
     # Remove temp file
@@ -52,7 +54,7 @@ fi
 ####################
 # create report job
 ####################
-cron2='*/1 * * * * /vagrant/check_speed/create_internet_speed_report.sh -i /vagrant/check_speed/monitor_internet_speed.Rmd -o /vagrant/check_speed/monitor_internet_speed.pdf -d /vagrant/check_speed/speedtest_values.csv' 
+cron2='#Create the report using the acquired speed data\n*/1 * * * * /vagrant/check_speed/create_internet_speed_report.sh -i /vagrant/check_speed/monitor_internet_speed.Rmd -o /vagrant/check_speed/monitor_internet_speed.pdf -d /vagrant/check_speed/speedtest_values.csv' 
 # Escape all the asterisks so we can grep for it
 cron2_escaped=$(echo "$cron2" | sed s/\*/\\\\*/g)
 
@@ -62,11 +64,12 @@ if crontab -l | grep -Fxq "${cron2_escaped}"
     echo "Crontab already exists. Exiting..."
     exit
   else
-	echo "Adding job to crontab."
+    echo "Adding job to crontab."
     # Write out current crontab into temp file
     crontab -l > mycron
     # Append new cron into cron file
-    echo "${cron2}" >> mycron
+    echo -e "${cron2}" >> mycron
+	echo "" >> mycron
     # Install new cron file
     crontab mycron
     # Remove temp file
