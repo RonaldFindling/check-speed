@@ -7,7 +7,7 @@ Then run:
 ```
 vagrant up
 ```
-After that the vagrant box is up running and schedules speed-checks as well as creates a pdf reports every 2 minutes.
+After that the vagrant box is up running and schedules speed-checks as well as creates a pdf reports every 5 minutes.
 This can be changed with `crontab` inside the vagrant box.
 ```
 ssh vagrant
